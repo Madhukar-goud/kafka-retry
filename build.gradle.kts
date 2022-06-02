@@ -35,6 +35,8 @@ dependencies {
 	implementation("com.jayway.jsonpath:json-path:2.7.0")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	implementation("org.springframework.kafka:spring-kafka:2.8.6")
+	implementation( "org.apache.kafka:kafka-streams")
+	implementation("org.springframework.kafka:spring-kafka")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 configurations.implementation {

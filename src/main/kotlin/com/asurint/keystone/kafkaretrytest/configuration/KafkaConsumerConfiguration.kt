@@ -26,6 +26,7 @@ import org.springframework.kafka.listener.DeadLetterPublishingRecoverer
 import org.springframework.kafka.listener.DefaultErrorHandler
 import org.springframework.kafka.listener.RetryListener
 import org.springframework.kafka.support.ExponentialBackOffWithMaxRetries
+import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 import org.springframework.util.backoff.FixedBackOff
 
 
@@ -37,8 +38,8 @@ private fun buildProducerRecord(key: String?, value: GetClient, topic: String): 
     return ProducerRecord(topic, null, key, value, null)
 }
 
-@Configuration
-@EnableKafka
+//@Configuration
+//@EnableKafka
 class KafkaConsumerConfiguration {
     private val logger: Logger = LoggerFactory.getLogger(KafkaConsumerConfiguration::class.java)
 
@@ -74,10 +75,11 @@ class KafkaConsumerConfiguration {
     @Bean
     fun producerFactory(): DefaultKafkaProducerFactory<String, GetClient> {
         val configProps: MutableMap<String, Any> = HashMap()
-        configProps[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:9092"
+        configProps[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:29092"
         configProps[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
         configProps[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = KafkaAvroSerializer::class.java
         configProps[KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG] = "http://localhost:8085"
+
         return DefaultKafkaProducerFactory(configProps)
     }
 
