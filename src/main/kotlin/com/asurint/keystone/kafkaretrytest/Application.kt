@@ -15,6 +15,6 @@ fun main(args: Array<String>) {
 	val testKafkaProducer: KafkaProducerConfiguration = ctx.getBean(KafkaProducerConfiguration::class.java)
 
 	var client = GetClient.newBuilder().setFullName("testname").setActive(true).setMaritalStatus("Married").build()
-	testKafkaProducer.sendMessage(client, "local.accounts")
+	//testKafkaProducer.sendMessage(client, "local.accounts")
 
 }
